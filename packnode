@@ -6,7 +6,7 @@ var fs = require('fs'),
 
 var stdin = process.openStdin(), input = '';
 
-var cipher, data, encrypted, packed, chunk = [],
+var cipher, data = '', encrypted, packed, chunk = [],
     encoding = 'hex', 
     algorithm = 'aes256',
     chunk_length = 80,
