@@ -1,0 +1,23 @@
+{ "name"          : "pack",
+  "description"   : "Create private node modules",
+  "version"       : "0.1.0",
+  "homepage"      : "http://github.com/chriso/packnode",
+  "keywords"      : ["pack","packnode","encrypt","compress","unpack"],
+  "author"        : "Chris O'Hara <cohara87@gmail.com>",
+  "bugs": { 
+    "mail": "cohara87@gmail.com",
+    "web": "http://github.com/chriso/packnode/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/chriso/packnode.git"
+  },
+  "engines": { "node": ">=0.2.5" },
+  "bin": { 
+    "packnode": "./packnode",
+  },
+  "licenses": [{ 
+    "type": "MIT", 
+    "url": "http://github.com/chriso/packnode/raw/master/LICENSE"
+  }]
+}
