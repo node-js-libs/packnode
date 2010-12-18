@@ -1,4 +1,4 @@
-`packnode` encrypts node modules for private use
+`packnode` encrypts node modules for private use.
 
 To install packnode, use [npm](http://github.com/isaacs/npm)
 
@@ -54,3 +54,9 @@ CoffeeScript modules can be packed using
 To specify a custom encryption algorithm or output encoding, use `-a` and `-e`
 
     $ packnode -a aes256 -e hex < myscript.js > packed.js
+    
+[node.io](http://node.io) has built-in support for unpacking private modules.
+
+To run a packed job, use the `-u` switch to specify the password
+
+    $ node.io -u pass123 myjob
