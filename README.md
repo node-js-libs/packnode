@@ -1,7 +1,5 @@
 Packnode encrypts node modules for private use
 
-## Installation
-
 To install packnode, use [npm](http://github.com/isaacs/npm)
 
     $ npm install pack
@@ -32,13 +30,13 @@ The following example was packed using
 
     $ packnode pass123 < hello1.js > hello2.js
 
-`hello1.js`
+hello1.js
 
     exports.world = function () {
         console.log('Hello world!');
     };
 
-`hello2.js`
+hello2.js
 
     var crypto = require("crypto");
     packed = "fec9063967f14579d132aafe31e1747df6a33318a847e7d8720821294c3ecb0791bcbabd58231b35";
