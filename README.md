@@ -1,4 +1,4 @@
-Packnode encrypts node modules for private use
+`packnode` encrypts node modules for private use
 
 To install packnode, use [npm](http://github.com/isaacs/npm)
 
@@ -10,16 +10,6 @@ To pack a module using a password (e.g. `pass123`), run
 
     $ cat myscript.js | packnode pass123 > packed.js
     
-CoffeeScript modules can be packed using
-    
-    $ cat myscript.coffee | coffee -c -s | packnode pass123 > packed.js
-    
-To specify a custom encryption algorithm or output encoding, use `-a` and `-e`
-
-    $ packnode -a aes256 -e hex < myscript.js > packed.js
-
-## Using a packed module
-
 Encrypted modules can be accessed by calling `unpack(password)`
 
     require('./packed').unpack('pass123'); //Same as require('./myscript')
@@ -54,3 +44,13 @@ Running both modules
 
     require('./hello1').world();                    //Outputs 'Hello world!'
     require('./hello2').unpack('pass123').world();  //Outputs 'Hello world!'
+
+## Advanced
+
+CoffeeScript modules can be packed using
+    
+    $ cat myscript.coffee | coffee -c -s | packnode pass123 > packed.js
+    
+To specify a custom encryption algorithm or output encoding, use `-a` and `-e`
+
+    $ packnode -a aes256 -e hex < myscript.js > packed.js

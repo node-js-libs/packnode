@@ -68,7 +68,7 @@ stdin.on('end', function () {
 
     // Prepare the output
     packed  = 'var crypto = require("crypto");\n'
-    packed += 'packed = "' + chunk.join('";\npacked += "') + '";\n';
+    packed += 'packed =  "' + chunk.join('";\npacked += "') + '";\n';
     packed += 'exports.unpack = function (password) {\n';
     packed += '    var decipher = crypto.createDecipher("' + algorithm + '", password);\n';
     packed += '    exports = (function (exports, packed) {\n';
