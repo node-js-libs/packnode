@@ -1,4 +1,4 @@
-`packnode` encrypts node modules for private use.
+`packnode` minifies and encrypts node modules for private use.
 
 To install packnode, use [npm](http://github.com/isaacs/npm)
 
@@ -28,8 +28,8 @@ hello1.js
 
 hello2.js
 
-    packed =  "fec9063967f14579d132aafe31e1747dea6aeea1d396db60f9eb48d1d424e5bfcb32a74454346166";
-	packed += "55132c4d04a6b37b59e1a3d4857ad56fa3f242200b8b27272a5d4f6460fcce96b5a9290df4df9bcf";
+	packed =  "5b3be6d94448754b6d8484a78b5f30d7a2c2598105d0e225166a0132bef8b1cb30e252c835e25d40";
+	packed += "e1a5542b809641159ab7c7dbfff1b2ba5177c6e291b3d9b5";
 	exports.unpack = function (password) {
 		var decipher = require("crypto").createDecipher("aes256", password);
 		eval(decipher.update(packed, "hex", "utf8") + decipher.final("utf8"));
