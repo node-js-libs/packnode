@@ -10,9 +10,7 @@ To pack `myscript.js` using the password `pass123`, run
 
     $ cat myscript.js | packnode pass123 > packed.js
     
-Encrypted modules can be accessed by calling `require(packed).unpack(password)`
-
-    require('./packed').unpack('pass123'); //Same as require('./myscript')
+Encrypted modules can be accessed by calling  require(packed).unpack(password);
     
 ## Example
 
@@ -32,7 +30,7 @@ hello2.js
     exports.unpack=function(p){var d=require("crypto").createDecipher("aes256",p);
     eval(d.update(e,"base64","utf8")+d.final("utf8"));return exports;}
 
-Running both modules
+Both are equivalent
 
     require('./hello1').world();                    //Outputs 'Hello world!'
     require('./hello2').unpack('pass123').world();  //Outputs 'Hello world!'

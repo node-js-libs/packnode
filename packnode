@@ -147,30 +147,26 @@ stdin.on('end', function () {
 
     if (!unpack) {
 
-    // Minify the file
-    data = jsmin(data);
-    
-    // Encrypt the file
-    cipher = crypto.createCipher(algorithm, password);
-    encrypted = cipher.update(data, 'binary', encoding) + cipher.final(encoding); 
-    for (var i = 0, l = encrypted.length; i < l; i += chunk_length) {
-        chunk.push(encrypted.substr(i, chunk_length));
-    }
+        // Minify the file
+        data = jsmin(data);
+        
+        // Encrypt the file
+        cipher = crypto.createCipher(algorithm, password);
+        encrypted = cipher.update(data, 'binary', encoding) + cipher.final(encoding); 
+        for (var i = 0, l = encrypted.length; i < l; i += chunk_length) {
+            chunk.push(encrypted.substr(i, chunk_length));
+        }
 
-    // Prepare the output
-    out  = 'e="' + chunk.join('"\n+"') + '";\n';
-    out += 'exports.unpack=function(p){var d=require("crypto").createDecipher("' + algorithm + '",p);\n';
-    out += 'eval(d.update(e,"' + encoding + '","utf8")+d.final("utf8"));return exports;}';
+        // Prepare the output
+        out  = 'e="' + chunk.join('"\n+"') + '";\n';
+        out += 'exports.unpack=function(p){var d=require("crypto").createDecipher("' + algorithm + '",p);\n';
+        out += 'eval(d.update(e,"' + encoding + '","utf8")+d.final("utf8"));return exports;}';
 
     } else {
         
-        packed = (function () {
-            eval(data);
-            return e;
-        }());
-        
+        // Read and decrypt the file
+        packed = (function () { eval(data); return e; }());
         decipher = crypto.createDecipher(algorithm, password);
-        
         out = decipher.update(packed, encoding, 'utf8') + decipher.final('utf8');
         
     }
