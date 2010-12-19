@@ -10,7 +10,7 @@ To pack a module using a password (e.g. `pass123`), run
 
     $ cat myscript.js | packnode pass123 > packed.js
     
-Encrypted modules can be accessed by calling `unpack(password)`
+Encrypted modules can be accessed by calling `require(module).unpack(password)`
 
     require('./packed').unpack('pass123'); //Same as require('./myscript')
     
@@ -28,17 +28,13 @@ hello1.js
 
 hello2.js
 
-    var crypto = require("crypto");
-    packed = "fec9063967f14579d132aafe31e1747df6a33318a847e7d8720821294c3ecb0791bcbabd58231b35";
-    packed += "719efa39799269f5d7af18fee4b1c5e06d3291b099f90134481942ece7acd931f09c0ea34aaafcc1";
-    exports.unpack = function (password) {
-        var decipher = crypto.createDecipher("aes256", password);
-        exports = (function (exports, packed) {
-            var unpacked = decipher.update(packed, "hex", "utf8") + decipher.final("utf8");
-            eval(unpacked); return exports;
-        }(exports, packed));
-        return exports;
-    };
+    packed =  "fec9063967f14579d132aafe31e1747dea6aeea1d396db60f9eb48d1d424e5bfcb32a74454346166";
+	packed += "55132c4d04a6b37b59e1a3d4857ad56fa3f242200b8b27272a5d4f6460fcce96b5a9290df4df9bcf";
+	exports.unpack = function (password) {
+		var decipher = require("crypto").createDecipher("aes256", password);
+		eval(decipher.update(packed, "hex", "utf8") + decipher.final("utf8"));
+		return exports;
+	};
 
 Running both modules
 
