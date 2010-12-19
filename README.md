@@ -3,6 +3,8 @@ packnode minifies, obfuscates and/or encrypts node modules for private use.
 To install packnode, use [npm](http://github.com/isaacs/npm)
 
     $ npm install pack
+    
+Note: packnode uses the YUI Compressor which requires Java
 
 ## Packing a module
     
@@ -32,9 +34,10 @@ hello1.js
 
 hello2.js
 
-    e="Wzvm2URIdUtthISni18w16LCWYEF0OIlFmoBMr74scunRCLLMqCCidCS4zFlLkA/TDI5cWw/0dRgUVbZ67h4Hg==";
+    e="5b3be6d94448754b6d8484a78b5f30d7a2c2598105d0e225166a0132bef8b1cba74422cb32a08289d092e331652e403f4c32"
+    +"39716c3fd1d4605156d9ebb8781e";
     exports.unpack=function(p){var d=require("crypto").createDecipher("aes256",p);
-    eval(d.update(e,"base64","utf8")+d.final("utf8"));return exports;}
+    eval(d.update(e,"hex","utf8")+d.final("utf8"));return exports;}
 
 Both are equivalent
 

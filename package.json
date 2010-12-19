@@ -1,6 +1,6 @@
 { "name"          : "pack",
   "description"   : "Minify, obfuscate and encrypt node modules",
-  "version"       : "0.2.0",
+  "version"       : "0.2.1",
   "homepage"      : "http://github.com/chriso/packnode",
   "keywords"      : ["pack","packnode","encrypt","compress","unpack","yui","obfuscate","compressor","closure","jsmin"],
   "author"        : "Chris O'Hara <cohara87@gmail.com>",
