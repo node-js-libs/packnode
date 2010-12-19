@@ -1,9 +1,11 @@
 { "name"          : "pack",
-  "description"   : "Create private node modules",
-  "version"       : "0.1.5",
+  "description"   : "Minify, obfuscate and encrypt node modules",
+  "version"       : "0.2.0",
   "homepage"      : "http://github.com/chriso/packnode",
-  "keywords"      : ["pack","packnode","encrypt","compress","unpack"],
+  "keywords"      : ["pack","packnode","encrypt","compress","unpack","yui","obfuscate","compressor","closure","jsmin"],
   "author"        : "Chris O'Hara <cohara87@gmail.com>",
+  "main"          : "./lib",
+  "directories"   : { "lib" : "./lib" },
   "bugs": { 
     "mail": "cohara87@gmail.com",
     "web": "http://github.com/chriso/packnode/issues"
@@ -14,7 +16,7 @@
   },
   "engines": { "node": ">=0.2.5" },
   "bin": { 
-    "packnode": "./packnode",
+    "packnode": "./bin/packnode",
   },
   "licenses": [{ 
     "type": "MIT", 

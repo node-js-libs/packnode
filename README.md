@@ -1,4 +1,4 @@
-`packnode` runs node modules through JSMin and encrypts them for private use.
+`packnode` minifies, obfuscates or encrypts node modules for private use.
 
 To install packnode, use [npm](http://github.com/isaacs/npm)
 
@@ -6,11 +6,15 @@ To install packnode, use [npm](http://github.com/isaacs/npm)
 
 ## Packing a module
     
-To pack `myscript.js` using the password `pass123`, run
+To compress and obfuscate `myscript.js` using the YUI compressor, run
+
+    $ cat myscript.js | packnode > packed.js
+    
+To encrypt `myscript.js` using the password `pass123`, run
 
     $ cat myscript.js | packnode pass123 > packed.js
     
-Encrypted modules can be accessed by calling  require(packed).unpack(password);
+Encrypted modules can be accessed by calling require(packed).unpack(password);
     
 ## Example
 
@@ -40,10 +44,6 @@ Both are equivalent
 CoffeeScript modules can be packed using
     
     $ cat myscript.coffee | coffee -c -s | packnode pass123 > packed.js
-    
-To obfuscate code, use the included YUI Compressor v2.4.2 (requires Java)
-
-    $ java -jar yui.jar myscript.js | packnode pass123 > packed.js
     
 To specify a custom encryption algorithm or output encoding, use `-a` and `-e`
 
