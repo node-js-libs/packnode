@@ -11,7 +11,7 @@ var cipher, data = '', encrypted, out, chunk = [],
     encoding = 'base64', 
     algorithm = 'aes256',
     chunk_length = 100,
-    password, unpack;
+    password, unpack, minify;
 
 var exit = function (msg, is_error) {
     console.log(msg);
@@ -25,6 +25,7 @@ var usage = ''
   + '\x1b[1mExample 2\x1b[0m: cat input.coffee | coffee -c -s | packnode mypassword > output.js\n'
   + '\n'
   + '\x1b[1mOptions\x1b[0m:\n'
+  + '  -m, --minify           Just minify the input using JSMin\n'
   + '  -a, --algorithm <..>   Use the specified algorithm. Default is "aes256"\n'
   + '  -e, --encoding <..>    Encode with base64|hex|binary. Default is "hex"\n'
   + '  -u, --unpack           Unpack the module using the specified password\n'
@@ -49,6 +50,10 @@ while (args.length) {
     case '-u':
     case '--unpack':
         unpack = true;
+        break;
+    case '-m':
+    case '--minify':
+        minify = true;
         break;
     case '-h':
     case '--help':
@@ -149,6 +154,12 @@ stdin.on('end', function () {
 
         // Minify the file
         data = jsmin(data);
+        
+        if (minify) {
+            // Are we just minifying the file?
+            process.stdout.write(data);
+            return;
+        }
         
         // Encrypt the file
         cipher = crypto.createCipher(algorithm, password);
