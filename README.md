@@ -30,7 +30,7 @@ hello1.js
 
 hello2.js
 
-    e="Wzvm2URIdUtthISni18w16LCWYEF0OIlFmoBMr74scsw4lLINeJdQOGlVCuAlkEVmrfH2//xsrpRd8bikbPZtQ==";
+    e="Wzvm2URIdUtthISni18w16LCWYEF0OIlFmoBMr74scunRCLLMqCCidCS4zFlLkA/TDI5cWw/0dRgUVbZ67h4Hg==";
     exports.unpack=function(p){var d=require("crypto").createDecipher("aes256",p);
     eval(d.update(e,"base64","utf8")+d.final("utf8"));return exports;}
 
@@ -49,7 +49,7 @@ To specify a custom encryption algorithm or output encoding, use `-a` and `-e`
 
     $ packnode -a aes256 -e hex < myscript.js > packed.js
     
-[node.io](http://node.io) has built-in support for unpacking private modules.
+[node.io](http://node.io) has built-in support for unpacking encrypted modules.
 
 To run a packed job, use the `-u` switch to specify the password
 
