@@ -1,4 +1,4 @@
-`packnode` minifies, obfuscates or encrypts node modules for private use.
+packnode minifies, obfuscates and/or encrypts node modules for private use.
 
 To install packnode, use [npm](http://github.com/isaacs/npm)
 
@@ -14,7 +14,9 @@ To encrypt `myscript.js` using the password `pass123`, run
 
     $ cat myscript.js | packnode pass123 > packed.js
     
-Encrypted modules can be accessed by calling require(packed).unpack(password);
+Encrypted modules can be accessed by calling 
+
+    require(packed).unpack(password);
     
 ## Example
 
@@ -51,6 +53,6 @@ To specify a custom encryption algorithm or output encoding, use `-a` and `-e`
     
 [node.io](http://node.io) has built-in support for unpacking encrypted modules.
 
-To run a packed job, use the `-u` switch to specify the password
+To run an encrypted job, use the `-u` switch to specify the password
 
     $ node.io -u pass123 myjob
