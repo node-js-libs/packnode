@@ -7,11 +7,12 @@ var fs = require('fs'),
 
 var stdin = process.openStdin(), input = '';
 
-var cipher, data = '', encrypted, packed, chunk = [],
+var cipher, data = '', encrypted, out, chunk = [],
+    packed, decipher,
     encoding = 'hex', 
     algorithm = 'aes256',
     chunk_length = 80,
-    password;
+    password, unpack;
 
 var exit = function (msg, is_error) {
     console.log(msg);
@@ -27,6 +28,7 @@ var usage = ''
   + '\x1b[1mOptions\x1b[0m:\n'
   + '  -a, --algorithm <..>   Use the specified algorithm. Default is "aes256"\n'
   + '  -e, --encoding <..>    Encode with base64|hex|binary. Default is "hex"\n'
+  + '  -u, --unpack           Unpack the module using the specified password\n'
   + '  -h, --help             Display help information\n'
   ;
 
@@ -45,6 +47,10 @@ while (args.length) {
     case '--encoding':
         encoding = args.shift();
         break;
+    case '-u':
+    case '--unpack':
+        unpack = true;
+        break;
     case '-h':
     case '--help':
         exit(usage);
@@ -60,6 +66,8 @@ stdin.setEncoding('utf8');
 stdin.on('data', function (input) { data += input; });
 stdin.on('end', function () { 
 
+    if (!unpack) {
+
     // Minify the file
     data = jsmin(data);
     
@@ -71,14 +79,24 @@ stdin.on('end', function () {
     }
 
     // Prepare the output
-    packed  = 'packed =  "' + chunk.join('";\npacked += "') + '";\n';
-    packed += 'exports.unpack = function (password) {\n';
-    packed += '    var decipher = require("crypto").createDecipher("' + algorithm + '", password);\n';
-    packed += '    eval(decipher.update(packed, "' + encoding + '", "utf8") + decipher.final("utf8"));\n';
-    packed += '    return exports;\n';
-    packed += '};';
+    out  = 'e="' + chunk.join('";\ne+="') + '";\n';
+    out += 'exports.unpack=function(p){var d=require("crypto").createDecipher("' + algorithm + '",p);\n';
+    out += 'eval(d.update(e,"' + encoding + '","utf8")+d.final("utf8"));return exports;}';
 
+    } else {
+        
+        packed = (function () {
+            eval(data);
+            return e;
+        }());
+        
+        decipher = crypto.createDecipher(algorithm, password);
+        
+        out = decipher.update(packed, encoding, 'utf8') + decipher.final('utf8');
+        
+    }
+    
     // ..and write to stdout
-    process.stdout.write(packed);
+    process.stdout.write(out);
     
 });

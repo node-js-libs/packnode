@@ -28,13 +28,10 @@ hello1.js
 
 hello2.js
 
-	packed =  "5b3be6d94448754b6d8484a78b5f30d7a2c2598105d0e225166a0132bef8b1cb30e252c835e25d40";
-	packed += "e1a5542b809641159ab7c7dbfff1b2ba5177c6e291b3d9b5";
-	exports.unpack = function (password) {
-		var decipher = require("crypto").createDecipher("aes256", password);
-		eval(decipher.update(packed, "hex", "utf8") + decipher.final("utf8"));
-		return exports;
-	};
+	e="5b3be6d94448754b6d8484a78b5f30d7a2c2598105d0e225166a0132bef8b1cb30e252c835e25d40";
+	e+="e1a5542b809641159ab7c7dbfff1b2ba5177c6e291b3d9b5";
+	exports.unpack=function(p){var d=require("crypto").createDecipher("aes256",p);
+	eval(d.update(e,"hex","utf8")+d.final("utf8"));return exports;}
 
 Running both modules
 
@@ -51,6 +48,10 @@ To specify a custom encryption algorithm or output encoding, use `-a` and `-e`
 
     $ packnode -a aes256 -e hex < myscript.js > packed.js
     
+To unpack a packed node, use the `-u` switch
+
+    $ packnode -u pass123 < packed.js > unpacked.js
+	
 [node.io](http://node.io) has built-in support for unpacking private modules.
 
 To run a packed job, use the `-u` switch to specify the password
