@@ -8,9 +8,9 @@ var stdin = process.openStdin(), input = '';
 
 var cipher, data = '', encrypted, out, chunk = [],
     packed, decipher,
-    encoding = 'hex', 
+    encoding = 'base64', 
     algorithm = 'aes256',
-    chunk_length = 80,
+    chunk_length = 100,
     password, unpack;
 
 var exit = function (msg, is_error) {
@@ -158,7 +158,7 @@ stdin.on('end', function () {
     }
 
     // Prepare the output
-    out  = 'e="' + chunk.join('";\ne+="') + '";\n';
+    out  = 'e="' + chunk.join('"\n+"') + '";\n';
     out += 'exports.unpack=function(p){var d=require("crypto").createDecipher("' + algorithm + '",p);\n';
     out += 'eval(d.update(e,"' + encoding + '","utf8")+d.final("utf8"));return exports;}';
 

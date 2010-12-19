@@ -6,11 +6,11 @@ To install packnode, use [npm](http://github.com/isaacs/npm)
 
 ## Packing a module
     
-To pack a module using a password (e.g. `pass123`), run
+To pack `myscript.js` using the password `pass123`, run
 
     $ cat myscript.js | packnode pass123 > packed.js
     
-Encrypted modules can be accessed by calling `require(module).unpack(password)`
+Encrypted modules can be accessed by calling `require(packed).unpack(password)`
 
     require('./packed').unpack('pass123'); //Same as require('./myscript')
     
@@ -28,10 +28,9 @@ hello1.js
 
 hello2.js
 
-	e="5b3be6d94448754b6d8484a78b5f30d7a2c2598105d0e225166a0132bef8b1cb30e252c835e25d40";
-	e+="e1a5542b809641159ab7c7dbfff1b2ba5177c6e291b3d9b5";
-	exports.unpack=function(p){var d=require("crypto").createDecipher("aes256",p);
-	eval(d.update(e,"hex","utf8")+d.final("utf8"));return exports;}
+    e="Wzvm2URIdUtthISni18w16LCWYEF0OIlFmoBMr74scsw4lLINeJdQOGlVCuAlkEVmrfH2//xsrpRd8bikbPZtQ==";
+    exports.unpack=function(p){var d=require("crypto").createDecipher("aes256",p);
+    eval(d.update(e,"base64","utf8")+d.final("utf8"));return exports;}
 
 Running both modules
 
