@@ -1,4 +1,4 @@
-packnode minifies, obfuscates and/or encrypts node modules for private use.
+**packnode minifies, obfuscates and/or encrypts node modules for private use.**
 
 To install packnode, use [npm](http://github.com/isaacs/npm)
 
