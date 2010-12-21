@@ -4,7 +4,7 @@ To install packnode, use [npm](http://github.com/isaacs/npm)
 
     $ npm install pack
     
-Note: packnode uses the YUI Compressor which requires Java
+*Note: packnode uses [YUI Compressor](http://developer.yahoo.com/yui/compressor/) v2.4.2 which requires Java >= 1.4*
 
 ## Packing a module
     
