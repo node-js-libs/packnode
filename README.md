@@ -3,12 +3,10 @@
 To install packnode, use [npm](http://github.com/isaacs/npm)
 
     $ npm install pack
-    
-*Note: packnode uses [YUI Compressor](http://developer.yahoo.com/yui/compressor/) v2.4.2 which requires Java >= 1.4*
 
 ## Packing a module
     
-To compress and obfuscate `myscript.js` using the YUI compressor, run
+To compress and obfuscate `myscript.js` using [uglifyjs](https://github.com/mishoo/UglifyJS), run
 
     $ cat myscript.js | packnode > packed.js
     
