@@ -19,7 +19,7 @@
   },
   "engines": { "node": ">=0.2.5" },
   "bin": { 
-    "packnode": "./bin/packnode",
+    "packnode": "./bin/packnode"
   },
   "licenses": [{ 
     "type": "MIT", 
